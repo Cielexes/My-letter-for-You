@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +41,7 @@
     position: relative;
     box-shadow: 0 15px 35px rgba(0,0,0,0.1);
     cursor: pointer;
-    transition: transform 0.8s ease;
+    transition: transform 0.8s ease, opacity 0.8s ease;
     z-index: 0; /* behind the letter */
   }
   .flap {
@@ -103,6 +104,13 @@
   /* open flap */
   .open .flap {
     transform: rotateX(180deg);
+  }
+
+  /* fade out envelope when opened */
+  .envelope.open {
+    opacity: 0;
+    transform: scale(0.5);
+    pointer-events: none;
   }
 
   /* sparkle */
@@ -169,7 +177,7 @@ function typeWriter() {
 }
 
 function openLetter(element) {
-  element.classList.add("open");
+  element.classList.add("open"); // envelope fades and shrinks
   document.getElementById("letter").style.transform = "translate(-50%, -50%) scale(1)";
   typeWriter();
 
