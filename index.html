@@ -1,216 +1,252 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Uyen 💌</title>
-<style>
-  body {
-    margin: 0;
-    height: 100vh;
-    background: #ffe6f2;
-    font-family: 'Segoe UI', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    position: relative;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Uyen · Always and Forever</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  /* floating petals */
-  .petal {
-    position: absolute;
-    top: -10px;
-    font-size: 18px;
-    animation: fall linear infinite;
-    opacity: 0.6;
-  }
-  @keyframes fall {
-    to {
-      transform: translateY(110vh) rotate(360deg);
+    body {
+      [span_0](start_span)background: linear-gradient(145deg, #fbdee9 0%, #fccfdc 100%);[span_0](end_span)
+      [span_1](start_span)min-height: 100vh;[span_1](end_span)
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      [span_2](start_span)font-family: 'Quicksand', sans-serif;[span_2](end_span)
+      [span_3](start_span)padding: 1.5rem;[span_3](end_span)
+      overflow: hidden;
     }
-  }
 
-  /* envelope */
-  .envelope {
-    width: 320px;
-    height: 220px;
-    background: #fff0f6;
-    border-radius: 12px;
-    position: relative;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-    cursor: pointer;
-    transition: transform 0.8s ease, opacity 0.8s ease;
-    z-index: 0; /* behind the letter */
-  }
-  .flap {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: #ffd6e8;
-    clip-path: polygon(0 0, 50% 50%, 100% 0);
-    transform-origin: top;
-    transition: transform 0.8s ease;
-  }
-  .seal {
-    position: absolute;
-    top: 85px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 28px;
-  }
-  .flower {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 22px;
-  }
-  .label {
-    position: absolute;
-    bottom: 12px;
-    width: 100%;
-    text-align: center;
-    font-size: 14px;
-    color: #cc6699;
-  }
+    #particleCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
 
-  /* letter */
-  .letter {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 420px;
-    max-width: 90%;
-    padding: 30px;
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-    transform: translate(-50%, -50%) scale(0);
-    transition: transform 0.8s ease;
-    color: #cc6699;
-    text-align: center;
-    z-index: 1; /* above envelope */
-  }
-  .letter img {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 15px;
-    margin: 10px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  }
+    .envelope-wrapper {
+      [span_4](start_span)max-width: 850px;[span_4](end_span)
+      [span_5](start_span)width: 100%;[span_5](end_span)
+      [span_6](start_span)cursor: pointer;[span_6](end_span)
+      [span_7](start_span)filter: drop-shadow(0 25px 25px #f7a3bb);[span_7](end_span)
+      z-index: 1;
+    }
 
-  /* open flap */
-  .open .flap {
-    transform: rotateX(180deg);
-  }
+    .envelope {
+      [span_8](start_span)background: linear-gradient(145deg, #ffd9d2, #ffcbc4);[span_8](end_span)
+      [span_9](start_span)border-radius: 45px 45px 30px 30px;[span_9](end_span)
+      [span_10](start_span)box-shadow: 0 18px 0 #ce7d96, 0 0 0 4px #fff9f7 inset;[span_10](end_span)
+      padding: 2rem;
+      [span_11](start_span)position: relative;[span_11](end_span)
+      [span_12](start_span)border: 4px solid #fff6f2;[span_12](end_span)
+    }
 
-  /* fade out envelope when opened */
-  .envelope.open {
-    opacity: 0;
-    transform: scale(0.5);
-    pointer-events: none;
-  }
+    /* Flap */
+    .envelope::before {
+      content: '';
+      [span_13](start_span)position: absolute;[span_13](end_span)
+      [span_14](start_span)top: -38px;[span_14](end_span)
+      [span_15](start_span)left: 10%;[span_15](end_span)
+      [span_16](start_span)width: 80%;[span_16](end_span)
+      [span_17](start_span)height: 68px;[span_17](end_span)
+      [span_18](start_span)background: linear-gradient(145deg, #ffcbc4, #ffb8b0);[span_18](end_span)
+      [span_19](start_span)border-radius: 70px 70px 30px 30px;[span_19](end_span)
+      [span_20](start_span)box-shadow: 0 -10px 0 #ce7d96;[span_20](end_span)
+      [span_21](start_span)border: 4px solid #fff8f5;[span_21](end_span)
+      [span_22](start_span)clip-path: polygon(0% 0%, 100% 0%, 88% 100%, 12% 100%);[span_22](end_span)
+      [span_23](start_span)transition: top 0.3s ease-in-out, transform 0.3s;[span_23](end_span)
+      [span_24](start_span)z-index: 5;[span_24](end_span)
+    }
 
-  /* sparkle */
-  .sparkle {
-    position: absolute;
-    font-size: 18px;
-    animation: sparkle 1s ease-out forwards;
-  }
-  @keyframes sparkle {
-    to {
-      transform: translateY(-80px);
+    .envelope.open::before { top: -60px; transform: rotate(3deg); [span_25](start_span)}
+
+    .flap-heart {
+      position: absolute;[span_25](end_span)
+      [span_26](start_span)top: -28px;[span_26](end_span)
+      [span_27](start_span)left: 50%;[span_27](end_span)
+      [span_28](start_span)transform: translateX(-50%);[span_28](end_span)
+      [span_29](start_span)font-size: 2.5rem;[span_29](end_span)
+      [span_30](start_span)z-index: 10;[span_30](end_span)
+      [span_31](start_span)transition: top 0.3s;[span_31](end_span)
+    }
+
+    .envelope.open .flap-heart { top: -48px; [span_32](start_span)}
+
+    .flower-inside {
+      background: #fffcf9;[span_32](end_span)
+      [span_33](start_span)border-radius: 40px 20px 40px 20px;[span_33](end_span)
+      padding: 1.5rem;
+      [span_34](start_span)transition: opacity 0.3s, transform 0.3s;[span_34](end_span)
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .envelope:not(.open) .flower-inside {
       opacity: 0;
+      transform: scale(0.95);
+      [span_35](start_span)pointer-events: none;[span_35](end_span)
     }
-  }
-</style>
+
+    /* Photo Stack Styles */
+    .photo-stack {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      width: 100%;
+      padding: 10px 0;
+      margin-bottom: 1rem;
+    }
+
+    .photo-frame {
+      flex: 0 0 260px;
+      height: 180px;
+      background: white;
+      border: 6px solid white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .message-box {
+      [span_36](start_span)background: #fff9f5;[span_36](end_span)
+      [span_37](start_span)border: 4px solid #ffc2cf;[span_37](end_span)
+      [span_38](start_span)border-radius: 30px 10px 30px 10px;[span_38](end_span)
+      [span_39](start_span)padding: 1.5rem;[span_39](end_span)
+      [span_40](start_span)box-shadow: 0 8px 0 #f7aec4;[span_40](end_span)
+    }
+
+    .message-box p {
+      [span_41](start_span)font-size: 1.1rem;[span_41](end_span)
+      [span_42](start_span)color: #a13557;[span_42](end_span)
+      [span_43](start_span)font-family: 'Georgia', serif;[span_43](end_span)
+      [span_44](start_span)line-height: 1.5;[span_44](end_span)
+      [span_45](start_span)text-align: left;[span_45](end_span)
+    }
+
+    .signature {
+      [span_46](start_span)display: block;[span_46](end_span)
+      [span_47](start_span)margin-top: 10px;[span_47](end_span)
+      [span_48](start_span)text-align: right;[span_48](end_span)
+      [span_49](start_span)font-style: italic;[span_49](end_span)
+      font-weight: bold;
+    }
+
+    .footer-names {
+      margin-top: 1rem;
+      color: #ce7d96;
+      font-weight: 600;
+    }
+  </style>
 </head>
-
 <body>
+  <canvas id="particleCanvas"></canvas>
 
-<!-- envelope -->
-<div class="envelope" onclick="openLetter(this)">
-  <div class="flap"></div>
-  <div class="seal">❤️</div>
-  <div class="flower">🌸</div>
-  <div class="label">
-    From: Kimi 💗<br>
-    To: Uyen 💕
+  <div class="envelope-wrapper" id="envelopeWrapper">
+    <div class="envelope" id="envelope">
+      <div class="flap-heart">❤️</div>
+      
+      <div class="flower-inside">
+        <div class="photo-stack">
+          <div class="photo-frame">
+            <img src="IMG_20260214_155156.jpg" alt="Memory 1">
+          </div>
+          <div class="photo-frame">
+            <img src="IMG_20260214_155121_159.jpg" alt="Memory 2">
+          </div>
+        </div>
+
+        <div class="message-box">
+          <p>
+            My dearest Uyen,<br><br>
+            It’s been four months since we got to know each other, and honestly, it’s the best thing that happened to me last year. I never thought we would become this close. I never thought I would love you this much.<br><br>
+            I’m so glad I broke the “stranger danger” rule for you.<br><br>
+            Please remember this: whenever you feel like you’re not loved, whenever you feel alone — I’m here. I will always be here. Always and forever.<br><br>
+            Mhuamhuamya 💗<br>
+            <span class="signature">Writing this with all my heart,<br>Kiki Chupachupss</span>
+          </p>
+        </div>
+        <div class="footer-names">From: Kimi | To: Uyen</div>
+      </div>
+    </div>
   </div>
-</div>
 
-<!-- letter -->
-<div class="letter" id="letter">
-  <h2>Happy Valentine’s Day 💌</h2>
-  <div>
-    <img src="IMG_20260214_155121_159.jpg" alt="pic1">
-    <img src="IMG_20260214_155156.jpg" alt="pic2">
-  </div>
-  <p id="typewriter"></p>
-</div>
+  <audio id="bgMusic" loop>
+    [span_50](start_span)<source src="Always forever.mp3" type="audio/mpeg">[span_50](end_span)
+  </audio>
 
-<!-- background music -->
-<audio id="bgmusic" loop>
-  <source src="Always-forever.mp3" type="audio/mpeg">
-</audio>
+  <script>
+    // --- FLOWER PARTICLE SYSTEM ---
+    const pCanvas = document.getElementById('particleCanvas');
+    const pCtx = pCanvas.getContext('2d');
+    let particles = [];
 
-<script>
-const text = `My dearest Uyen,  
-It’s been four months since we got to know each other, and honestly, it’s the best thing that happened to me last year. I never thought we would become this close. I never thought I would love you this much.  
+    function resize() {
+      pCanvas.width = window.innerWidth;
+      pCanvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
 
-I’m so glad I broke the “stranger danger” rule for you.  
+    class Flower {
+      constructor() { this.reset(); }
+      reset() {
+        this.x = Math.random() * pCanvas.width;
+        this.y = -20;
+        this.size = Math.random() * 8 + 4;
+        this.speed = Math.random() * 1 + 0.5;
+        this.angle = Math.random() * 6;
+        this.spin = Math.random() * 0.02 - 0.01;
+      }
+      update() {
+        this.y += this.speed;
+        this.angle += this.spin;
+        if (this.y > pCanvas.height) this.reset();
+      }
+      draw() {
+        pCtx.save();
+        pCtx.translate(this.x, this.y);
+        pCtx.rotate(this.angle);
+        pCtx.fillStyle = '#ffc1e3'; 
+        for(let i=0; i<5; i++) {
+          pCtx.rotate(Math.PI/2.5);
+          pCtx.beginPath();
+          pCtx.ellipse(0, 0, this.size, this.size/2, 0, 0, Math.PI*2);
+          pCtx.fill();
+        }
+        pCtx.restore();
+      }
+    }
 
-Please remember this: whenever you feel like you’re not loved, whenever you feel alone — I’m here. I will always be here. Always and forever.  
+    for(let i=0; i<40; i++) particles.push(new Flower());
 
-Mhuamhuamya 💗  
-Writing this with all my heart, Kiki Chupachupss`;
+    function animate() {
+      pCtx.clearRect(0,0, pCanvas.width, pCanvas.height);
+      particles.forEach(p => { p.update(); p.draw(); });
+      requestAnimationFrame(animate);
+    }
+    animate();
 
-let i = 0;
-function typeWriter() {
-  if (i < text.length) {
-    document.getElementById("typewriter").innerHTML += text.charAt(i);
-    i++;
-    setTimeout(typeWriter, 30);
-  }
-}
+    // --- ENVELOPE INTERACTION ---
+    const envelope = document.getElementById('envelope');
+    const wrapper = document.getElementById('envelopeWrapper');
+    [span_51](start_span)const audio = document.getElementById('bgMusic');[span_51](end_span)
 
-function openLetter(element) {
-  element.classList.add("open"); // envelope fades and shrinks
-  document.getElementById("letter").style.transform = "translate(-50%, -50%) scale(1)";
-  typeWriter();
-
-  // play music safely
-  const music = document.getElementById("bgmusic");
-  music.play().catch(e => console.log("Music play error:", e));
-
-  sparkleEffect();
-}
-
-// sparkle burst
-function sparkleEffect() {
-  for (let i = 0; i < 20; i++) {
-    let sparkle = document.createElement("div");
-    sparkle.className = "sparkle";
-    sparkle.innerHTML = "✨";
-    sparkle.style.left = Math.random() * window.innerWidth + "px";
-    sparkle.style.top = Math.random() * window.innerHeight + "px";
-    document.body.appendChild(sparkle);
-    setTimeout(() => sparkle.remove(), 1000);
-  }
-}
-
-// falling petals
-for (let i = 0; i < 15; i++) {
-  let petal = document.createElement("div");
-  petal.className = "petal";
-  petal.innerHTML = "🌸";
-  petal.style.left = Math.random() * window.innerWidth + "px";
-  petal.style.animationDuration = (5 + Math.random() * 5) + "s";
-  document.body.appendChild(petal);
-}
-</script>
-
+    [span_52](start_span)wrapper.addEventListener('click', () => {[span_52](end_span)
+      [span_53](start_span)envelope.classList.toggle('open');[span_53](end_span)
+      [span_54](start_span)if (envelope.classList.contains('open')) {[span_54](end_span)
+        [span_55](start_span)audio.play().catch(e => console.log("Play blocked"));[span_55](end_span)
+      }
+    });
+  </script>
 </body>
 </html>
