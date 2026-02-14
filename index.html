@@ -4,129 +4,119 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For Uyen 💌</title>
-
 <style>
-body {
-  margin: 0;
-  height: 100vh;
-  background: #ffe6f2;
-  font-family: 'Segoe UI', sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-
-/* floating petals */
-.petal {
-  position: absolute;
-  top: -10px;
-  font-size: 18px;
-  animation: fall linear infinite;
-  opacity: 0.6;
-}
-
-@keyframes fall {
-  to {
-    transform: translateY(110vh) rotate(360deg);
+  body {
+    margin: 0;
+    height: 100vh;
+    background: #ffe6f2;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
   }
-}
 
-/* envelope */
-.envelope {
-  width: 320px;
-  height: 220px;
-  background: #fff0f6;
-  border-radius: 12px;
-  position: relative;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-  cursor: pointer;
-  transition: transform 0.8s ease;
-  z-index: 2;
-}
-
-.flap {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: #ffd6e8;
-  clip-path: polygon(0 0, 50% 50%, 100% 0);
-  transform-origin: top;
-  transition: transform 0.8s ease;
-}
-
-.seal {
-  position: absolute;
-  top: 85px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 28px;
-}
-
-.flower {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 22px;
-}
-
-.label {
-  position: absolute;
-  bottom: 12px;
-  width: 100%;
-  text-align: center;
-  font-size: 14px;
-  color: #cc6699;
-}
-
-/* letter */
-.letter {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 420px;
-  max-width: 90%;
-  padding: 30px;
-  background: white;
-  border-radius: 20px;
-  box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-  transform: translate(-50%, -50%) scale(0);
-  transition: transform 0.8s ease;
-  color: #cc6699;
-  text-align: center;
-  z-index: 1;
-}
-
-.letter img {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 15px;
-  margin: 10px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-}
-
-.open .flap {
-  transform: rotateX(180deg);
-}
-
-.open ~ .letter {
-  transform: translate(-50%, -50%) scale(1);
-}
-
-/* sparkle */
-.sparkle {
-  position: absolute;
-  font-size: 18px;
-  animation: sparkle 1s ease-out forwards;
-}
-
-@keyframes sparkle {
-  to {
-    transform: translateY(-80px);
-    opacity: 0;
+  /* floating petals */
+  .petal {
+    position: absolute;
+    top: -10px;
+    font-size: 18px;
+    animation: fall linear infinite;
+    opacity: 0.6;
   }
-}
+  @keyframes fall {
+    to {
+      transform: translateY(110vh) rotate(360deg);
+    }
+  }
+
+  /* envelope */
+  .envelope {
+    width: 320px;
+    height: 220px;
+    background: #fff0f6;
+    border-radius: 12px;
+    position: relative;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.8s ease;
+    z-index: 0; /* behind the letter */
+  }
+  .flap {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #ffd6e8;
+    clip-path: polygon(0 0, 50% 50%, 100% 0);
+    transform-origin: top;
+    transition: transform 0.8s ease;
+  }
+  .seal {
+    position: absolute;
+    top: 85px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 28px;
+  }
+  .flower {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 22px;
+  }
+  .label {
+    position: absolute;
+    bottom: 12px;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    color: #cc6699;
+  }
+
+  /* letter */
+  .letter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 420px;
+    max-width: 90%;
+    padding: 30px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.8s ease;
+    color: #cc6699;
+    text-align: center;
+    z-index: 1; /* above envelope */
+  }
+  .letter img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+
+  /* open flap */
+  .open .flap {
+    transform: rotateX(180deg);
+  }
+
+  /* sparkle */
+  .sparkle {
+    position: absolute;
+    font-size: 18px;
+    animation: sparkle 1s ease-out forwards;
+  }
+  @keyframes sparkle {
+    to {
+      transform: translateY(-80px);
+      opacity: 0;
+    }
+  }
 </style>
 </head>
 
@@ -146,34 +136,28 @@ body {
 <!-- letter -->
 <div class="letter" id="letter">
   <h2>Happy Valentine’s Day 💌</h2>
-
-  <!-- YOUR PICTURES (replace src links) -->
   <div>
     <img src="IMG_20260214_155121_159.jpg" alt="pic1">
     <img src="IMG_20260214_155156.jpg" alt="pic2">
   </div>
-
   <p id="typewriter"></p>
 </div>
 
-<!-- background music (starts after click) -->
+<!-- background music -->
 <audio id="bgmusic" loop>
   <source src="Always-forever.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-const text = `My dearest Uyen,
+const text = `My dearest Uyen,  
+It’s been four months since we got to know each other, and honestly, it’s the best thing that happened to me last year. I never thought we would become this close. I never thought I would love you this much.  
 
-It’s been four months since we got to know each other, and honestly, it’s the best thing that happened to me last year. I never thought we would become this close. I never thought I would love you this much.
+I’m so glad I broke the “stranger danger” rule for you.  
 
-I’m so glad I broke the “stranger danger” rule for you.
+Please remember this: whenever you feel like you’re not loved, whenever you feel alone — I’m here. I will always be here. Always and forever.  
 
-Please remember this: whenever you feel like you’re not loved, whenever you feel alone — I’m here. I will always be here. Always and forever.
-
-Mhuamhuamya 💗
-
-Writing this with all my heart,
-Kiki Chupachupss`;
+Mhuamhuamya 💗  
+Writing this with all my heart, Kiki Chupachupss`;
 
 let i = 0;
 function typeWriter() {
@@ -186,12 +170,17 @@ function typeWriter() {
 
 function openLetter(element) {
   element.classList.add("open");
+  document.getElementById("letter").style.transform = "translate(-50%, -50%) scale(1)";
   typeWriter();
-  document.getElementById("bgmusic").play();
+
+  // play music safely
+  const music = document.getElementById("bgmusic");
+  music.play().catch(e => console.log("Music play error:", e));
+
   sparkleEffect();
 }
 
-/* sparkle burst */
+// sparkle burst
 function sparkleEffect() {
   for (let i = 0; i < 20; i++) {
     let sparkle = document.createElement("div");
@@ -204,7 +193,7 @@ function sparkleEffect() {
   }
 }
 
-/* falling petals */
+// falling petals
 for (let i = 0; i < 15; i++) {
   let petal = document.createElement("div");
   petal.className = "petal";
